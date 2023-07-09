@@ -323,18 +323,13 @@ pub fn get_packages() -> String {
     }
 
     if in_path("brew") {
-        let output = &std::process::Command::new("brew")
-            .arg("list")
-            .arg("-1")
-            .output()
-            .expect("Failed to execute command");
-
-        let count = String::from_utf8_lossy(&output.stdout).lines().count();
+        let count = file_count("/opt/homebrew/Cellar");
+        let count2 = file_count("/opt/homebrew/Caskroom");
 
         packages.push_str(&format!(
             "{}{} brew",
             if packages.is_empty() { "" } else { ", " },
-            count
+            count + count2
         ));
     }
 
