@@ -3,6 +3,7 @@ use std::env;
 use std::io::Result;
 
 pub mod common;
+pub mod data;
 
 fn add_item(
     colors: &HashMap<&str, &str>,

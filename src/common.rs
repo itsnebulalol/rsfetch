@@ -1,9 +1,9 @@
-use reqwest::blocking::get;
-use serde_json::from_str;
 use std::env;
 use std::fs::{read_dir, read_to_string, File};
 use std::io::{BufRead, BufReader};
 use std::path::Path;
+
+use crate::data;
 
 pub fn get_uname() -> String {
     let uname = std::process::Command::new("uname")
@@ -178,20 +178,7 @@ pub fn get_model(os: &str) -> String {
             }
         }
 
-        let model_res = get(&format!(
-            "https://di-api.reincubate.com/v1/apple-identifiers/{}/",
-            machine_id
-        ));
-
-        if let Ok(res) = model_res {
-            if res.status().is_success() {
-                let res_content = res.text().unwrap();
-                let j: serde_json::Value = from_str(&res_content).unwrap();
-                if let Some(str_val) = j["product"]["sku"].as_str() {
-                    model = str_val.to_string();
-                }
-            }
-        }
+        model = data::mac_mapping(&machine_id).to_string();
     }
 
     for info in &oem_info {
