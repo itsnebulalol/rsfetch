@@ -1,0 +1,13 @@
+[package]
+name = "rsfetch"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.26"
+psutil = "3.2.2"
+reqwest = { version = "0.11.18", features = ["blocking", "json"] }
+serde_json = "1.0.100"
+sys-info = "0.9.1"
+uname-rs = "0.1.1"
+uptime_lib = "0.2.2"
