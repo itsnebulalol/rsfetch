@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::env;
 use std::io::Result;
-use uname_rs::Uname;
 
 pub mod common;
 
@@ -24,7 +23,7 @@ fn add_item(
 }
 
 fn main() -> Result<()> {
-    let uts = Uname::new()?;
+    let uname: &str = &common::get_uname();
 
     let mut colors: HashMap<&'static str, &'static str> = HashMap::new();
     colors.insert("black", "\x1b[30m");
@@ -58,23 +57,11 @@ fn main() -> Result<()> {
     );
     println!(
         "{}",
-        add_item(
-            &colors,
-            "",
-            "model",
-            &common::get_model(&uts.sysname),
-            "yellow"
-        )
+        add_item(&colors, "", "model", &common::get_model(uname), "yellow")
     );
     println!(
         "{}",
-        add_item(
-            &colors,
-            "",
-            "os",
-            &common::get_os_version(&uts.sysname),
-            "green"
-        )
+        add_item(&colors, "", "os", &common::get_os_version(uname), "green")
     );
     println!(
         "{}",

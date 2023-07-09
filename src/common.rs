@@ -5,6 +5,15 @@ use std::fs::{read_dir, read_to_string, File};
 use std::io::{BufRead, BufReader};
 use std::path::Path;
 
+pub fn get_uname() -> String {
+    let uname = std::process::Command::new("uname")
+        .output()
+        .expect("Failed to execute command")
+        .stdout;
+
+    return String::from_utf8_lossy(&uname).trim().to_string();
+}
+
 pub fn get_user() -> String {
     match env::var("USER") {
         Ok(val) => return val,

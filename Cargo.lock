@@ -780,7 +780,6 @@ dependencies = [
  "reqwest",
  "serde_json",
  "sys-info",
- "uname-rs",
  "uptime_lib",
 ]
 
@@ -1054,12 +1053,6 @@ name = "try-lock"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3528ecfd12c466c6f163363caf2d02a71161dd5e1cc6ae7b34207ea2d42d81ed"
-
-[[package]]
-name = "uname-rs"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6498db259318ceb970d57db6844044c0c2023c5dc15f33dfc1292306fa017906"
 
 [[package]]
 name = "unescape"
